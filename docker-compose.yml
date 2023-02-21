@@ -8,6 +8,8 @@ services:
       - 8082:80
     volumes:
       - /opt/appdata/filebrowser:/config
+      - /opt/appdata:/srv/appdata
+      - /data:/srv/data
   homepage:
     container_name: homepage
     image: ghcr.io/benphelps/homepage:latest
