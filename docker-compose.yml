@@ -14,6 +14,14 @@ services:
     volumes:
       - /opt/appdata/homepage:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
+  home-assistant:
+    container_name: home-assistant
+    image: homeassistant/home-assistant
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /opt/appdata/home-assistant:/config
+# --- Monitoring ---
   netdata:
     container_name: netdata
     image: netdata/netdata
