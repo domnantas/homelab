@@ -8,6 +8,7 @@ services:
       - 8082:80
     volumes:
       - /opt/appdata/filebrowser:/config
+      - /opt/appdata/filebrowser/filebrowser.db:/database/filebrowser.db
       - /opt/appdata:/srv/appdata
       - /data:/srv/data
   homepage:
