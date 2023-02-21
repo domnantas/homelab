@@ -16,11 +16,24 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
   home-assistant:
     container_name: home-assistant
-    image: homeassistant/home-assistant
+    image: homeassistant/home-assistant:latest
     restart: unless-stopped
     network_mode: host
     volumes:
       - /opt/appdata/home-assistant:/config
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    restart: unless-stopped
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 1010:80/tcp
+    environment:
+      TZ: 'Europe/Vilnius'
+    volumes:
+      - /opt/appdata/pihole:/etc/pihole
+      - /opt/appdata/pihole/DNS:/etc/dnsmasq.d
 # --- Monitoring ---
   netdata:
     container_name: netdata
