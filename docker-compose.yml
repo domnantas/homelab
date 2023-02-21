@@ -128,3 +128,14 @@ services:
     volumes:
       - /opt/appdata/sabnzbd:/config
       - /data/usenet:/data/usenet:rw
+  qflood:
+    container_name: qflood
+    image: cr.hotio.dev/hotio/qflood
+    ports:
+      - "8080:8080"
+      - "3000:3000"
+    environment:
+      - FLOOD_AUTH=false
+      <<: *env
+    volumes:
+      - /opt/appdata/qflood:/config
