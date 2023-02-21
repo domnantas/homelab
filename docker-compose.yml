@@ -27,7 +27,6 @@ services:
       - apparmor:unconfined
     volumes:
       - /opt/appdata/netdata/config:/etc/netdata
-      - /opt/appdata/netdata/lib:/var/lib/netdata
       - /etc/passwd:/host/etc/passwd:ro
       - /etc/group:/host/etc/group:ro
       - /proc:/host/proc:ro
