@@ -2,7 +2,7 @@ version: "3.3"
 services:
   portainer:
     container_name: portainer_2
-    image: portainer/portainer_ce:latest
+    image: portainer/portainer-ce:latest
     restart: unless-stopped
     ports:
       - 8000:8000
