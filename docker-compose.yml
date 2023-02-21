@@ -117,6 +117,16 @@ services:
     volumes:
       - /opt/appdata/sonarr:/config
       - /data:/data
+  prowlarr:
+    container_name: prowlarr
+    image: linuxserver/prowlarr:latest
+    restart: unless-stopped
+    environment:
+      <<: *env
+    ports:
+      - 9696:9696
+    volumes:
+      - /opt/appdata/prowlarr:/config
   sabnzbd:
     container_name: sabnzbd
     image: linuxserver/sabnzbd:latest
