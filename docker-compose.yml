@@ -15,6 +15,29 @@ services:
       - /opt/appdata/homepage:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
 # --- Media ---
+  jellyfin:
+    container_name: jellyfin
+    image: linuxserver/jellyfin:latest
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Vilnius
+    volumes:
+      - /opt/appdata/jellyfin:/config
+      - /data/media:/data/media
+    ports:
+      - 8096:8096
+  jellyseerr:
+    container_name: jellyseerr
+    image: fallenbagel/jellyseerr:latest
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Vilnius
+    ports:
+      - 5055:5055
+    volumes:
+      - /opt/appdata/jellyseer:/app/config
   radarr:
     container_name: radarr
     image: linuxserver/radarr:latest
