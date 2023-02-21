@@ -1,19 +1,38 @@
 version: "3.3"
 services:
   filebrowser:
-    image: filebrowser/filebrowser
     container_name: filebrowser
+    image: filebrowser/filebrowser:latest
     restart: unless-stopped
     volumes:
       - /opt/appdata/filebrowser:/config
   homepage:
-    image: ghcr.io/benphelps/homepage:latest
     container_name: homepage
+    image: ghcr.io/benphelps/homepage:latest
     ports:
       - 3000:3000
     volumes:
       - /opt/appdata/homepage:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
+  netdata:
+    container_name: netdata
+    image: netdata/netdata
+    restart: unless-stopped
+    hostname: home
+    ports:
+      - 19999:19999
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /opt/appdata/netdata/config:/etc/netdata
+      - /opt/appdata/netdata/lib:/var/lib/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
 # --- Media ---
   jellyfin:
     container_name: jellyfin
