@@ -108,7 +108,7 @@ services:
       - /data:/data
   sonarr:
     container_name: sonarr
-    image: linuxserver/sonarr:latest
+    image: linuxserver/sonarr:develop
     restart: unless-stopped
     environment:
       <<: *env
