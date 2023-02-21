@@ -26,9 +26,9 @@ services:
     image: pihole/pihole:latest
     restart: unless-stopped
     ports:
-      - 53:53/tcp
-      - 53:53/udp
-      - 1010:80/tcp
+      - "53:53/tcp"
+      - "53:53/udp"
+      - 1010:80
     environment:
       TZ: 'Europe/Vilnius'
     volumes:
