@@ -14,8 +14,8 @@ services:
     ports:
       - 8082:80
     volumes:
-      - /opt/appdata/filebrowser:/config
-      - /opt/appdata/filebrowser/filebrowser.db:/database/filebrowser.db
+      - /opt/appdata/filebrowser/filebrowser.json:/.filebrowser.json
+      - /opt/appdata/filebrowser/filebrowser.db:/filebrowser.db
       - /opt/appdata:/srv/appdata
       - /data:/srv/data
   homepage:
