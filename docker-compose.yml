@@ -1,5 +1,20 @@
 version: "3.3"
 services:
+  filebrowser:
+    image: filebrowser/filebrowser
+    container_name: filebrowser
+    restart: unless-stopped
+    volumes:
+      - /opt/appdata/filebrowser:/config
+  homepage:
+    image: ghcr.io/benphelps/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    volumes:
+      - /opt/appdata/homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+# --- Media ---
   radarr:
     container_name: radarr
     image: linuxserver/radarr:latest
