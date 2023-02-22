@@ -125,7 +125,7 @@ services:
     restart: unless-stopped
     network_mode: host
     environment:
-      - VERSION=docker
+      VERSION: docker
       <<: *env
     volumes:
       - /opt/appdata/plex:/config
