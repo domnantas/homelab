@@ -63,7 +63,7 @@ services:
     environment:
       TS_ROUTES: 192.168.0.0/24
       TS_ACCEPT_DNS: false
-      TS_STATE_DIR=/var/lib/tailscale
+      TS_STATE_DIR: /var/lib/tailscale
       TS_EXTRA_ARGS: "--advertise-exit-node"
       <<: *env
     volumes:
