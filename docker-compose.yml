@@ -162,18 +162,16 @@ services:
     volumes:
       - /opt/appdata/sabnzbd:/config
       - /data/usenet:/data/usenet:rw
-  transmission:
-    container_name: transmission
-    image: linuxserver/transmission:latest
+  qbittorrent:
+    container_name: qbittorrent
+    image: linuxserver/qbittorrent:latest
     restart: unless-stopped
     environment:
       <<: *env
     ports:
-      - 9091:9091
-      - 51413:51413
-      - 51413:51413/udp
-    environment:
-      <<: *env
+      - 8081:8080
+      - 6881:6881
+      - 6881:6881/udp
     volumes:
-      - /opt/appdata/transmission:/config
+      - /opt/appdata/qbittorrent:/config
       - /data/torrents:/data/torrents
