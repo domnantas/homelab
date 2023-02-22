@@ -176,4 +176,4 @@ services:
       <<: *env
     volumes:
       - /opt/appdata/transmission:/config
-      - /data/torrents:/downloads
+      - /data/torrents:/data/torrents
