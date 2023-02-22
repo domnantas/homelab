@@ -72,28 +72,6 @@ services:
     cap_add:
       - net_admin
       - sys_module
-  traefik:
-    container_name: traefik
-    image: traefik:latest
-    restart: unless-stopped
-    command:
-      #- "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-    ports:
-      - 80:80
-      - 8083:8080
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-  whoami:
-    image: "traefik/whoami"
-    container_name: "simple-service"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.home`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
 # --- Monitoring ---
   netdata:
     container_name: netdata
