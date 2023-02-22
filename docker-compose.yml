@@ -99,6 +99,8 @@ services:
     restart: unless-stopped
     environment:
       <<: *env
+    group_add:
+      - "109"
     ports:
       - 8096:8096
     volumes:
