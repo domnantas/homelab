@@ -10,7 +10,7 @@ services:
     image: filebrowser/filebrowser:latest
     restart: unless-stopped
     environment:
-      TZ: Europe/Vilnius
+      <<: *env
     ports:
       - 8082:80
     volumes:
@@ -27,7 +27,6 @@ services:
       - 80:3000
     volumes:
       - /opt/appdata/homepage:/app/config
-      - /var/run/docker.sock:/var/run/docker.sock
   home-assistant:
     container_name: home-assistant
     image: homeassistant/home-assistant:latest
@@ -72,6 +71,17 @@ services:
     cap_add:
       - net_admin
       - sys_module
+  dockerproxy:
+    container_name: dockerproxy
+    image: tecnativa/docker-socket-proxy:latest
+    restart: unless-stopped
+    environment:
+        - CONTAINERS=1 # Allow access to viewing containers
+        - POST=0 # Disallow any POST operations (effectively read-only)
+    ports:
+        - 2375:2375
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock:ro
 # --- Monitoring ---
   netdata:
     container_name: netdata
