@@ -161,8 +161,8 @@ services:
     container_name: qflood
     image: cr.hotio.dev/hotio/qflood
     ports:
-      - "8081:8080"
-      - "3001:3000"
+      - 8081:8080
+      - 3001:3000
     environment:
       FLOOD_AUTH: false
       WEBUI_PORTS: 8081/tcp,8081/udp,3001/tcp,3001/udp
