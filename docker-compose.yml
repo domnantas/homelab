@@ -119,6 +119,21 @@ services:
     devices:
       - /dev/dri/renderD128:/dev/dri/renderD128
       - /dev/dri/card0:/dev/dri/card0
+  plex:
+    container_name: plex
+    image: linuxserver/plex:latest
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - VERSION=docker
+      <<: *env
+    volumes:
+      - /opt/appdata/plex:/config
+      - /data/media:/data/media
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri/card0:/dev/dri/card0
+    
   jellyseerr:
     container_name: jellyseerr
     image: fallenbagel/jellyseerr:latest
