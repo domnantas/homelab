@@ -66,7 +66,7 @@ services:
     container_name: netdata
     image: netdata/netdata
     restart: unless-stopped
-    host: home
+    hostname: home
     environment:
       DOCKER_HOST: dockerproxy:2375
       <<: *env
