@@ -20,7 +20,7 @@ services:
       - /data:/srv/data
   homepage:
     container_name: homepage
-    image: ghcr.io/benphelps/homepage:latest
+    image: ghcr.io/benphelps/homepage:v0.6.9
     environment:
       <<: *env
     ports:
@@ -29,7 +29,7 @@ services:
       - /opt/appdata/homepage:/app/config
   home-assistant:
     container_name: home-assistant
-    image: homeassistant/home-assistant:latest
+    image: homeassistant/home-assistant:2023.2.5
     restart: unless-stopped
     environment:
       <<: *env
@@ -38,7 +38,7 @@ services:
       - /opt/appdata/home-assistant:/config
   pihole:
     container_name: pihole
-    image: pihole/pihole:latest
+    image: pihole/pihole:2023.02.2
     restart: unless-stopped
     environment:
       <<: *env
@@ -47,14 +47,14 @@ services:
       - "53:53/udp"
       - 1010:80
     environment:
-      TZ: 'Europe/Vilnius'
+      <<: *env
       WEBPASSWORD: ''
     volumes:
       - /opt/appdata/pihole:/etc/pihole
       - /opt/appdata/pihole/DNS:/etc/dnsmasq.d
   dockerproxy:
     container_name: dockerproxy
-    image: tecnativa/docker-socket-proxy:latest
+    image: tecnativa/docker-socket-proxy:0.1
     restart: unless-stopped
     environment:
         - CONTAINERS=1 # Allow access to viewing containers
@@ -64,7 +64,7 @@ services:
 # --- Monitoring ---
   netdata:
     container_name: netdata
-    image: netdata/netdata
+    image: netdata/netdata:1.38.1
     restart: unless-stopped
     hostname: home
     environment:
@@ -86,7 +86,7 @@ services:
 # --- Media ---
   jellyfin:
     container_name: jellyfin
-    image: linuxserver/jellyfin:latest
+    image: linuxserver/jellyfin:10.8.9
     restart: unless-stopped
     environment:
       <<: *env
@@ -102,7 +102,7 @@ services:
       - /dev/dri/card0:/dev/dri/card0
   jellyseerr:
     container_name: jellyseerr
-    image: fallenbagel/jellyseerr:latest
+    image: fallenbagel/jellyseerr:1.4.1
     restart: unless-stopped
     environment:
       <<: *env
@@ -112,7 +112,7 @@ services:
       - /opt/appdata/jellyseer:/app/config
   radarr:
     container_name: radarr
-    image: linuxserver/radarr:latest
+    image: linuxserver/radarr:4.3.2
     restart: unless-stopped
     environment:
       <<: *env
@@ -123,7 +123,7 @@ services:
       - /data:/data
   sonarr:
     container_name: sonarr
-    image: linuxserver/sonarr:develop
+    image: linuxserver/sonarr:develop-4.0.0.390-ls412
     restart: unless-stopped
     environment:
       <<: *env
@@ -134,7 +134,7 @@ services:
       - /data:/data
   prowlarr:
     container_name: prowlarr
-    image: linuxserver/prowlarr:latest
+    image: linuxserver/prowlarr:1.2.2
     restart: unless-stopped
     environment:
       <<: *env
@@ -144,7 +144,7 @@ services:
       - /opt/appdata/prowlarr:/config
   sabnzbd:
     container_name: sabnzbd
-    image: linuxserver/sabnzbd:latest
+    image: linuxserver/sabnzbd:3.7.2
     restart: unless-stopped
     environment:
       <<: *env
@@ -155,7 +155,7 @@ services:
       - /data/usenet:/data/usenet:rw
   qbittorrent:
     container_name: qbittorrent
-    image: linuxserver/qbittorrent:latest
+    image: linuxserver/qbittorrent:4.5.1
     restart: unless-stopped
     environment:
       WEBUI_PORT: 8081
