@@ -21,6 +21,7 @@ services:
   homepage:
     container_name: homepage
     image: ghcr.io/benphelps/homepage:v0.6.9
+    restart: unless-stopped
     environment:
       <<: *env
     ports:
