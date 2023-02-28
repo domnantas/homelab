@@ -20,7 +20,7 @@ services:
       - /data:/srv/data
   homepage:
     container_name: homepage
-    image: ghcr.io/benphelps/homepage:v0.6.9
+    image: ghcr.io/benphelps/homepage:v0.6.10
     restart: unless-stopped
     environment:
       <<: *env
