@@ -38,6 +38,7 @@ services:
     network_mode: host
     volumes:
       - /opt/appdata/home-assistant:/config
+      - /run/dbus:/run/dbus:ro
   pihole:
     container_name: pihole
     image: pihole/pihole:2023.02.2
