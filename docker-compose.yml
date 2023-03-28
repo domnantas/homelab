@@ -36,7 +36,6 @@ services:
     environment:
       <<: *env
     network_mode: host
-    privileged: true
     volumes:
       - /opt/appdata/home-assistant:/config
       - /run/dbus:/run/dbus:ro
