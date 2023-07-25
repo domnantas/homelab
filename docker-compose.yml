@@ -24,8 +24,8 @@ services:
     security_opt:
       - seccomp:unconfined #optional
     environment:
+      CUSTOM_PORT: 3002
       <<: *env
-      - CUSTOM_PORT=3002
     volumes:
       - /opt/appdata/sqlitebrowser:/config
     ports:
