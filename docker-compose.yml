@@ -18,6 +18,20 @@ services:
       - /opt/appdata/filebrowser/filebrowser.db:/database/filebrowser.db
       - /opt/appdata:/srv/appdata
       - /data:/srv/data
+  sqlitebrowser:
+    container_name: sqlitebrowser
+    image: linuxserver/sqlitebrowser:latest
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      <<: *env
+      - CUSTOM_PORT=3002
+    volumes:
+      - /opt/appdata/sqlitebrowser:/config
+    ports:
+      - 3002:3002
+      - 3001:3001
+    restart: unless-stopped
   homepage:
     container_name: homepage
     image: ghcr.io/benphelps/homepage:v0.6.21
