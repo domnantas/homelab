@@ -35,7 +35,7 @@ services:
     restart: unless-stopped
   homepage:
     container_name: homepage
-    image: ghcr.io/benphelps/homepage:v0.6.28
+    image: ghcr.io/benphelps/homepage:v0.6.29
     restart: unless-stopped
     environment:
       <<: *env
