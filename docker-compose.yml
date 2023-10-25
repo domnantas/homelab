@@ -173,7 +173,7 @@ services:
       - /opt/appdata/prowlarr:/config
   sabnzbd:
     container_name: sabnzbd
-    image: linuxserver/sabnzbd:4.0.3
+    image: linuxserver/sabnzbd:4.1.0
     restart: unless-stopped
     environment:
       <<: *env
