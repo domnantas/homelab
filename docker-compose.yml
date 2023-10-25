@@ -184,7 +184,7 @@ services:
       - /data/usenet:/data/usenet:rw
   qbittorrent:
     container_name: qbittorrent
-    image: linuxserver/qbittorrent:4.5.5
+    image: linuxserver/qbittorrent:4.6.0
     restart: unless-stopped
     environment:
       WEBUI_PORT: 8081
