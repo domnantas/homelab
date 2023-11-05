@@ -22,6 +22,7 @@ services:
     container_name: guacamole
     image: unsafetypin/guacamole
     restart: unless-stopped
+    network_mode: host
     environment:
       <<: *env
     ports:
