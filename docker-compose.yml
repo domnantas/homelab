@@ -20,7 +20,7 @@ services:
       - /data:/srv/data
   guacamole:
     container_name: guacamole
-    image: unsafetypin/guacamole:latest
+    image: unsafetypin/guacamole
     restart: unless-stopped
     volumes:
     - /opt/appdata/guacamole:/config
