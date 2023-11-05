@@ -18,21 +18,14 @@ services:
       - /opt/appdata/filebrowser/filebrowser.db:/database/filebrowser.db
       - /opt/appdata:/srv/appdata
       - /data:/srv/data
-  sqlitebrowser:
-    container_name: sqlitebrowser
-    image: linuxserver/sqlitebrowser:latest
-    security_opt:
-      - seccomp:unconfined #optional
-    environment:
-      CUSTOM_PORT: 3002
-      <<: *env
-    volumes:
-      - /opt/appdata/sqlitebrowser:/config
-      - /opt/appdata/home-assistant:/home-assistant
-    ports:
-      - 3002:3002
-      - 3001:3001
+  guacamole:
+    container_name: guacamole
+    image: unsafetypin/guacamole:latest
     restart: unless-stopped
+    volumes:
+    - /opt/appdata/guacamole:/config
+    ports:
+    - 8083:8080
   homepage:
     container_name: homepage
     image: ghcr.io/gethomepage/homepage:v0.7.1
