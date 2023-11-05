@@ -19,13 +19,12 @@ services:
       - /opt/appdata:/srv/appdata
       - /data:/srv/data
   guacamole:
-    container_name: guacamole
     image: unsafetypin/guacamole
-    restart: unless-stopped
     volumes:
     - /opt/appdata/guacamole:/config
     ports:
     - 8083:8080
+    restart: always
   homepage:
     container_name: homepage
     image: ghcr.io/gethomepage/homepage:v0.7.1
