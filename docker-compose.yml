@@ -19,15 +19,18 @@ services:
       - /opt/appdata:/srv/appdata
       - /data:/srv/data
   guacamole:
+    container_name: guacamole
     image: unsafetypin/guacamole
-    volumes:
-    - /opt/appdata/guacamole:/config
+    restart: unless-stopped
+    environment:
+      <<: *env
     ports:
-    - 8083:8080
-    restart: always
+      - 8083:8080
+    volumes:
+      - /opt/appdata/guacamole:/config
   homepage:
     container_name: homepage
-    image: ghcr.io/gethomepage/homepage:v0.7.1
+    image: ghcr.io/gethomepage/homepage:latest
     restart: unless-stopped
     environment:
       <<: *env
