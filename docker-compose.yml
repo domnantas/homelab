@@ -34,7 +34,7 @@ services:
     ports:
         - 9925:9000
     volumes:
-      - opt/appdata/mealie:/app/data/
+      - /opt/appdata/mealie:/app/data/
   homepage:
     container_name: homepage
     image: ghcr.io/gethomepage/homepage:latest
