@@ -183,6 +183,7 @@ services:
       - 6767:6767
     volumes:
       - /opt/appdata/bazarr:/config
+      - /data:/data
   sabnzbd:
     container_name: sabnzbd
     image: linuxserver/sabnzbd:4.2.1
