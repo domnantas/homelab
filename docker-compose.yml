@@ -117,7 +117,7 @@ services:
 # --- Media ---
   jellyfin:
     container_name: jellyfin
-    image: linuxserver/jellyfin:10.8.11
+    image: linuxserver/jellyfin:10.8.13
     restart: unless-stopped
     environment:
       <<: *env
