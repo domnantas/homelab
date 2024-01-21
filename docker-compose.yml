@@ -7,7 +7,7 @@ x-environment-vars: &env
 services:
   filebrowser:
     container_name: filebrowser
-    image: filebrowser/filebrowser:latest
+    image: filebrowser/filebrowser:2.27.0
     restart: unless-stopped
     environment:
       <<: *env
@@ -37,7 +37,7 @@ services:
       - /opt/appdata/mealie:/app/data/
   homepage:
     container_name: homepage
-    image: ghcr.io/gethomepage/homepage:latest
+    image: ghcr.io/gethomepage/homepage:0.8.6
     restart: unless-stopped
     environment:
       <<: *env
