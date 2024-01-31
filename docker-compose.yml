@@ -186,7 +186,7 @@ services:
       - /data:/data
   sabnzbd:
     container_name: sabnzbd
-    image: linuxserver/sabnzbd:4.2.1
+    image: linuxserver/sabnzbd:4.2.2
     restart: unless-stopped
     environment:
       <<: *env
