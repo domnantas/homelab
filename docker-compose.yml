@@ -154,7 +154,7 @@ services:
       - /data:/data
   sonarr:
     container_name: sonarr
-    image: linuxserver/sonarr:4.0.1
+    image: linuxserver/sonarr:4.0.2
     restart: unless-stopped
     environment:
       <<: *env
