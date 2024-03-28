@@ -165,7 +165,7 @@ services:
       - /data:/data
   prowlarr:
     container_name: prowlarr
-    image: linuxserver/prowlarr:1.13.3
+    image: linuxserver/prowlarr:1.15.0
     restart: unless-stopped
     environment:
       <<: *env
