@@ -61,7 +61,7 @@ services:
       - /dev/ttyACM0:/dev/ttyACM0
   pihole:
     container_name: pihole
-    image: pihole/pihole:2024.02.2
+    image: pihole/pihole:2024.03.2
     restart: unless-stopped
     environment:
       <<: *env
