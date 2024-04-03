@@ -73,23 +73,23 @@ services:
     volumes:
       - /opt/appdata/pihole:/etc/pihole
       - /opt/appdata/pihole/DNS:/etc/dnsmasq.d
-  thelounge:
-    container_name: thelounge
-    image: ghcr.io/thelounge/thelounge:v4.4.1
-    ports:
-      - "9000:9000"
-    restart: unless-stopped
-    volumes:
-      - /opt/appdata/thelounge:/var/opt/thelounge
-  dockerproxy:
-    container_name: dockerproxy
-    image: tecnativa/docker-socket-proxy:0.1
-    restart: unless-stopped
-    environment:
-      - CONTAINERS=1 # Allow access to viewing containers
-      - POST=0 # Disallow any POST operations (effectively read-only)
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+  # thelounge:
+  #   container_name: thelounge
+  #   image: ghcr.io/thelounge/thelounge:v4.4.1
+  #   ports:
+  #     - "9000:9000"
+  #   restart: unless-stopped
+  #   volumes:
+  #     - /opt/appdata/thelounge:/var/opt/thelounge
+  # dockerproxy:
+  #   container_name: dockerproxy
+  #   image: tecnativa/docker-socket-proxy:0.1
+  #   restart: unless-stopped
+  #   environment:
+  #     - CONTAINERS=1 # Allow access to viewing containers
+  #     - POST=0 # Disallow any POST operations (effectively read-only)
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
   # --- Monitoring ---
   # netdata:
   #   container_name: netdata
