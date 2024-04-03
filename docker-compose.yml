@@ -65,11 +65,11 @@ services:
     restart: unless-stopped
     environment:
       <<: *env
+      WEBPASSWORD: ''
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - 1010:80
-      WEBPASSWORD: ''
     volumes:
       - /opt/appdata/pihole:/etc/pihole
       - /opt/appdata/pihole/DNS:/etc/dnsmasq.d
