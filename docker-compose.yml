@@ -5,19 +5,19 @@ x-environment-vars: &env
   TZ: Europe/Vilnius
 
 services:
-  filebrowser:
-    container_name: filebrowser
-    image: filebrowser/filebrowser:2.27.0
-    restart: unless-stopped
-    environment:
-      <<: *env
-    ports:
-      - 8082:80
-    volumes:
-      - /opt/appdata/filebrowser/.filebrowser.json:/.filebrowser.json
-      - /opt/appdata/filebrowser/filebrowser.db:/database/filebrowser.db
-      - /opt/appdata:/srv/appdata
-      - /data:/srv/data
+  # filebrowser:
+  #   container_name: filebrowser
+  #   image: filebrowser/filebrowser:2.27.0
+  #   restart: unless-stopped
+  #   environment:
+  #     <<: *env
+  #   ports:
+  #     - 8082:80
+  #   volumes:
+  #     - /opt/appdata/filebrowser/.filebrowser.json:/.filebrowser.json
+  #     - /opt/appdata/filebrowser/filebrowser.db:/database/filebrowser.db
+  #     - /opt/appdata:/srv/appdata
+  #     - /data:/srv/data
   mealie:
     container_name: mealie
     image: ghcr.io/mealie-recipes/mealie:v1.0.0-RC2
