@@ -5,22 +5,22 @@ x-environment-vars: &env
   TZ: Europe/Vilnius
 
 services:
-  # filebrowser:
-  #   container_name: filebrowser
-  #   image: filebrowser/filebrowser:2.27.0
-  #   restart: unless-stopped
-  #   environment:
-  #     <<: *env
-  #   ports:
-  #     - 8082:80
-  #   volumes:
-  #     - /opt/appdata/filebrowser/.filebrowser.json:/.filebrowser.json
-  #     - /opt/appdata/filebrowser/filebrowser.db:/database/filebrowser.db
-  #     - /opt/appdata:/srv/appdata
-  #     - /data:/srv/data
+  filebrowser:
+    container_name: filebrowser
+    image: filebrowser/filebrowser:v2.27.0
+    restart: unless-stopped
+    environment:
+      <<: *env
+    ports:
+      - 8082:80
+    volumes:
+      - /opt/appdata/filebrowser/.filebrowser.json:/.filebrowser.json
+      - /opt/appdata/filebrowser/filebrowser.db:/database/filebrowser.db
+      - /opt/appdata:/srv/appdata
+      - /data:/srv/data
   mealie:
     container_name: mealie
-    image: ghcr.io/mealie-recipes/mealie:v1.0.0-RC2
+    image: ghcr.io/mealie-recipes/mealie:v1.4.0
     restart: unless-stopped
     environment:
       <<: *env
@@ -32,12 +32,12 @@ services:
         limits:
           memory: 1000M
     ports:
-        - 9925:9000
+      - 9925:9000
     volumes:
       - /opt/appdata/mealie:/app/data/
   homepage:
     container_name: homepage
-    image: ghcr.io/gethomepage/homepage:0.8.8
+    image: ghcr.io/gethomepage/homepage:v0.8.8
     restart: unless-stopped
     environment:
       <<: *env
@@ -65,13 +65,11 @@ services:
     restart: unless-stopped
     environment:
       <<: *env
+      WEBPASSWORD: ""
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - 1010:80
-    environment:
-      <<: *env
-      WEBPASSWORD: ''
     volumes:
       - /opt/appdata/pihole:/etc/pihole
       - /opt/appdata/pihole/DNS:/etc/dnsmasq.d
@@ -83,16 +81,16 @@ services:
     restart: unless-stopped
     volumes:
       - /opt/appdata/thelounge:/var/opt/thelounge
+  # --- Monitoring ---
   dockerproxy:
     container_name: dockerproxy
     image: tecnativa/docker-socket-proxy:0.1
     restart: unless-stopped
     environment:
-        - CONTAINERS=1 # Allow access to viewing containers
-        - POST=0 # Disallow any POST operations (effectively read-only)
+      - CONTAINERS=1 # Allow access to viewing containers
+      - POST=0 # Disallow any POST operations (effectively read-only)
     volumes:
-        - /var/run/docker.sock:/var/run/docker.sock:ro
-# --- Monitoring ---
+      - /var/run/docker.sock:/var/run/docker.sock:ro
   netdata:
     container_name: netdata
     image: netdata/netdata:v1.44.3
@@ -114,7 +112,7 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
-# --- Media ---
+  # --- Media ---
   jellyfin:
     container_name: jellyfin
     image: linuxserver/jellyfin:10.8.13
