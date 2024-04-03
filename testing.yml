@@ -1,0 +1,211 @@
+x-environment-vars: &env
+  PUID: 1000
+  PGID: 1000
+  UMASK: 002
+  TZ: Europe/Vilnius
+
+services:
+  filebrowser:
+    container_name: filebrowser
+    image: filebrowser/filebrowser:2.27.0
+    restart: unless-stopped
+    environment:
+      <<: *env
+    ports:
+      - 8082:80
+    volumes:
+      - /opt/appdata/filebrowser/.filebrowser.json:/.filebrowser.json
+      - /opt/appdata/filebrowser/filebrowser.db:/database/filebrowser.db
+      - /opt/appdata:/srv/appdata
+      - /data:/srv/data
+  # mealie:
+  #   container_name: mealie
+  #   image: ghcr.io/mealie-recipes/mealie:v1.0.0-RC2
+  #   restart: unless-stopped
+  #   environment:
+  #     <<: *env
+  #     ALLOW_SIGNUP: true
+  #     MAX_WORKERS: 1
+  #     WEB_CONCURRENCY: 1
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 1000M
+  #   ports:
+  #       - 9925:9000
+  #   volumes:
+  #     - /opt/appdata/mealie:/app/data/
+  # homepage:
+  #   container_name: homepage
+  #   image: ghcr.io/gethomepage/homepage:0.8.8
+  #   restart: unless-stopped
+  #   environment:
+  #     <<: *env
+  #   ports:
+  #     - 80:3000
+  #   volumes:
+  #     - /opt/appdata/homepage:/app/config
+  #     - /data:/data
+  # home-assistant:
+  #   container_name: home-assistant
+  #   image: homeassistant/home-assistant:2024.2.5
+  #   restart: unless-stopped
+  #   environment:
+  #     <<: *env
+  #   network_mode: host
+  #   volumes:
+  #     - /opt/appdata/home-assistant:/config
+  #     - /run/dbus:/run/dbus:ro
+  #     - /dev/serial/by-id:/dev/serial/by-id
+  #   devices:
+  #     - /dev/ttyACM0:/dev/ttyACM0
+  # pihole:
+  #   container_name: pihole
+  #   image: pihole/pihole:2024.02.2
+  #   restart: unless-stopped
+  #   environment:
+  #     <<: *env
+  #   ports:
+  #     - "53:53/tcp"
+  #     - "53:53/udp"
+  #     - 1010:80
+  #   environment:
+  #     <<: *env
+  #     WEBPASSWORD: ''
+  #   volumes:
+  #     - /opt/appdata/pihole:/etc/pihole
+  #     - /opt/appdata/pihole/DNS:/etc/dnsmasq.d
+  # thelounge:
+  #   container_name: thelounge
+  #   image: ghcr.io/thelounge/thelounge:4.4.1
+  #   ports:
+  #     - "9000:9000"
+  #   restart: unless-stopped
+  #   volumes:
+  #     - /opt/appdata/thelounge:/var/opt/thelounge
+  # dockerproxy:
+  #   container_name: dockerproxy
+  #   image: tecnativa/docker-socket-proxy:0.1
+  #   restart: unless-stopped
+  #   environment:
+  #       - CONTAINERS=1 # Allow access to viewing containers
+  #       - POST=0 # Disallow any POST operations (effectively read-only)
+  #   volumes:
+  #       - /var/run/docker.sock:/var/run/docker.sock:ro
+# --- Monitoring ---
+# netdata:
+#   container_name: netdata
+#   image: netdata/netdata:v1.44.3
+#   restart: unless-stopped
+#   hostname: home
+#   environment:
+#     DOCKER_HOST: dockerproxy:2375
+#     <<: *env
+#   ports:
+#     - 19999:19999
+#   cap_add:
+#     - SYS_PTRACE
+#   security_opt:
+#     - apparmor:unconfined
+#   volumes:
+#     - /opt/appdata/netdata/config:/etc/netdata
+#     - /etc/passwd:/host/etc/passwd:ro
+#     - /etc/group:/host/etc/group:ro
+#     - /proc:/host/proc:ro
+#     - /sys:/host/sys:ro
+#     - /etc/os-release:/host/etc/os-release:ro
+# --- Media ---
+# jellyfin:
+#   container_name: jellyfin
+#   image: linuxserver/jellyfin:10.8.13
+#   restart: unless-stopped
+#   environment:
+#     <<: *env
+#   group_add:
+#     - "109"
+#   ports:
+#     - 8096:8096
+#   volumes:
+#     - /opt/appdata/jellyfin:/config
+#     - /data/media:/data/media
+#   devices:
+#     - /dev/dri/renderD128:/dev/dri/renderD128
+#     - /dev/dri/card0:/dev/dri/card0
+# jellyseerr:
+#   container_name: jellyseerr
+#   image: fallenbagel/jellyseerr:1.7.0
+#   restart: unless-stopped
+#   environment:
+#     <<: *env
+#   ports:
+#     - 5055:5055
+#   volumes:
+#     - /opt/appdata/jellyseer:/app/config
+# radarr:
+#   container_name: radarr
+#   image: linuxserver/radarr:5.3.6
+#   restart: unless-stopped
+#   environment:
+#     <<: *env
+#   ports:
+#     - 7878:7878
+#   volumes:
+#     - /opt/appdata/radarr:/config
+#     - /data:/data
+# sonarr:
+#   container_name: sonarr
+#   image: linuxserver/sonarr:4.0.2
+#   restart: unless-stopped
+#   environment:
+#     <<: *env
+#   ports:
+#     - 8989:8989
+#   volumes:
+#     - /opt/appdata/sonarr:/config
+#     - /data:/data
+# prowlarr:
+#   container_name: prowlarr
+#   image: linuxserver/prowlarr:1.13.3
+#   restart: unless-stopped
+#   environment:
+#     <<: *env
+#   ports:
+#     - 9696:9696
+#   volumes:
+#     - /opt/appdata/prowlarr:/config
+# bazarr:
+#   container_name: bazarr
+#   image: lscr.io/linuxserver/bazarr:1.4.2
+#   restart: unless-stopped
+#   environment:
+#     <<: *env
+#   ports:
+#     - 6767:6767
+#   volumes:
+#     - /opt/appdata/bazarr:/config
+#     - /data:/data
+# sabnzbd:
+#   container_name: sabnzbd
+#   image: linuxserver/sabnzbd:4.2.2
+#   restart: unless-stopped
+#   environment:
+#     <<: *env
+#   ports:
+#     - 8080:8080
+#   volumes:
+#     - /opt/appdata/sabnzbd:/config
+#     - /data/usenet:/data/usenet:rw
+# qbittorrent:
+#   container_name: qbittorrent
+#   image: linuxserver/qbittorrent:4.6.3
+#   restart: unless-stopped
+#   environment:
+#     WEBUI_PORT: 8081
+#     <<: *env
+#   ports:
+#     - 8081:8081
+#     - 6881:6881
+#     - 6881:6881/udp
+#   volumes:
+#     - /opt/appdata/qbittorrent:/config
+#     - /data/torrents:/data/torrents
