@@ -90,7 +90,7 @@ services:
     ports:
         - "2020:8000" # HTTP
         - "2021:8443" # HTTPS
-        - "8123:8123" # DYNMAP
+        - "2022:8123" # DYNMAP
         - "19132:19132/udp" # BEDROCK
         - "25500-25600:25500-25600" # MC SERV PORT RANGE
     volumes:
