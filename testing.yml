@@ -193,17 +193,17 @@ bazarr:
 #   volumes:
 #     - /opt/appdata/sabnzbd:/config
 #     - /data/usenet:/data/usenet:rw
-qbittorrent:
-  container_name: qbittorrent
-  image: linuxserver/qbittorrent:4.6.3
-  restart: unless-stopped
-  environment:
-    WEBUI_PORT: 8081
-    <<: *env
-  ports:
-    - 8081:8081
-    - 6881:6881
-    - 6881:6881/udp
-  volumes:
-    - /opt/appdata/qbittorrent:/config
-    - /data/torrents:/data/torrents
+# qbittorrent:
+#   container_name: qbittorrent
+#   image: linuxserver/qbittorrent:4.6.3
+#   restart: unless-stopped
+#   environment:
+#     WEBUI_PORT: 8081
+#     <<: *env
+#   ports:
+#     - 8081:8081
+#     - 6881:6881
+#     - 6881:6881/udp
+#   volumes:
+#     - /opt/appdata/qbittorrent:/config
+#     - /data/torrents:/data/torrents
