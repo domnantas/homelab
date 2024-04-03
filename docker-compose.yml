@@ -65,24 +65,25 @@ services:
     restart: unless-stopped
     environment:
       <<: *env
-      WEBPASSWORD: ''
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - 1010:80
+    environment:
+      <<: *env
+      WEBPASSWORD: ''
     volumes:
       - /opt/appdata/pihole:/etc/pihole
       - /opt/appdata/pihole/DNS:/etc/dnsmasq.d
   thelounge:
     container_name: thelounge
     image: ghcr.io/thelounge/thelounge:4.4.1
-    restart: unless-stopped
     ports:
       - "9000:9000"
+    restart: unless-stopped
     volumes:
       - /opt/appdata/thelounge:/var/opt/thelounge
   dockerproxy:
-    # Necessary for netdata
     container_name: dockerproxy
     image: tecnativa/docker-socket-proxy:0.1
     restart: unless-stopped
@@ -91,24 +92,6 @@ services:
         - POST=0 # Disallow any POST operations (effectively read-only)
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock:ro
-  # crafty:
-  #   container_name: crafty
-  #   image: arcadiatechnology/crafty-4:4.3.1
-  #   restart: unless-stopped
-  #   environment:
-  #     <<: *env
-  #   ports:
-  #       - "2020:8000" # HTTP
-  #       - "2021:8443" # HTTPS
-  #       - "8123:8123" # DYNMAP
-  #       - "19132:19132/udp" # BEDROCK
-  #       - "25500-25600:25500-25600" # MC SERV PORT RANGE
-  #   volumes:
-  #       - /opt/appdata/crafty/backups:/crafty/backups
-  #       - /opt/appdata/crafty/logs:/crafty/logs
-  #       - /opt/appdata/crafty/servers:/crafty/servers
-  #       - /opt/appdata/crafty/config:/crafty/app/config
-  #       - /opt/appdata/crafty/import:/crafty/import
 # --- Monitoring ---
   netdata:
     container_name: netdata
