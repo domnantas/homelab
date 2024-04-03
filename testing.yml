@@ -46,35 +46,33 @@ services:
     volumes:
       - /opt/appdata/homepage:/app/config
       - /data:/data
-  # home-assistant:
-  #   container_name: home-assistant
-  #   image: homeassistant/home-assistant:2024.2.5
-  #   restart: unless-stopped
-  #   environment:
-  #     <<: *env
-  #   network_mode: host
-  #   volumes:
-  #     - /opt/appdata/home-assistant:/config
-  #     - /run/dbus:/run/dbus:ro
-  #     - /dev/serial/by-id:/dev/serial/by-id
-  #   devices:
-  #     - /dev/ttyACM0:/dev/ttyACM0
-  # pihole:
-  #   container_name: pihole
-  #   image: pihole/pihole:2024.02.2
-  #   restart: unless-stopped
-  #   environment:
-  #     <<: *env
-  #   ports:
-  #     - "53:53/tcp"
-  #     - "53:53/udp"
-  #     - 1010:80
-  #   environment:
-  #     <<: *env
-  #     WEBPASSWORD: ''
-  #   volumes:
-  #     - /opt/appdata/pihole:/etc/pihole
-  #     - /opt/appdata/pihole/DNS:/etc/dnsmasq.d
+  home-assistant:
+    container_name: home-assistant
+    image: homeassistant/home-assistant:2024.2.5
+    restart: unless-stopped
+    environment:
+      <<: *env
+    network_mode: host
+    volumes:
+      - /opt/appdata/home-assistant:/config
+      - /run/dbus:/run/dbus:ro
+      - /dev/serial/by-id:/dev/serial/by-id
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:2024.02.2
+    restart: unless-stopped
+    environment:
+      <<: *env
+      WEBPASSWORD: ""
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - 1010:80
+    volumes:
+      - /opt/appdata/pihole:/etc/pihole
+      - /opt/appdata/pihole/DNS:/etc/dnsmasq.d
   # thelounge:
   #   container_name: thelounge
   #   image: ghcr.io/thelounge/thelounge:4.4.1
