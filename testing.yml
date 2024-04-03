@@ -18,23 +18,23 @@ services:
       - /opt/appdata/filebrowser/filebrowser.db:/database/filebrowser.db
       - /opt/appdata:/srv/appdata
       - /data:/srv/data
-  # mealie:
-  #   container_name: mealie
-  #   image: ghcr.io/mealie-recipes/mealie:v1.0.0-RC2
-  #   restart: unless-stopped
-  #   environment:
-  #     <<: *env
-  #     ALLOW_SIGNUP: true
-  #     MAX_WORKERS: 1
-  #     WEB_CONCURRENCY: 1
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         memory: 1000M
-  #   ports:
-  #       - 9925:9000
-  #   volumes:
-  #     - /opt/appdata/mealie:/app/data/
+  mealie:
+    container_name: mealie
+    image: ghcr.io/mealie-recipes/mealie:v1.0.0-RC2
+    restart: unless-stopped
+    environment:
+      <<: *env
+      ALLOW_SIGNUP: true
+      MAX_WORKERS: 1
+      WEB_CONCURRENCY: 1
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+    ports:
+      - 9925:9000
+    volumes:
+      - /opt/appdata/mealie:/app/data/
   # homepage:
   #   container_name: homepage
   #   image: ghcr.io/gethomepage/homepage:0.8.8
