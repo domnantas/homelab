@@ -182,17 +182,17 @@ bazarr:
   volumes:
     - /opt/appdata/bazarr:/config
     - /data:/data
-sabnzbd:
-  container_name: sabnzbd
-  image: linuxserver/sabnzbd:4.2.2
-  restart: unless-stopped
-  environment:
-    <<: *env
-  ports:
-    - 8080:8080
-  volumes:
-    - /opt/appdata/sabnzbd:/config
-    - /data/usenet:/data/usenet:rw
+# sabnzbd:
+#   container_name: sabnzbd
+#   image: linuxserver/sabnzbd:4.2.2
+#   restart: unless-stopped
+#   environment:
+#     <<: *env
+#   ports:
+#     - 8080:8080
+#   volumes:
+#     - /opt/appdata/sabnzbd:/config
+#     - /data/usenet:/data/usenet:rw
 qbittorrent:
   container_name: qbittorrent
   image: linuxserver/qbittorrent:4.6.3
