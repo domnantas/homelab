@@ -99,6 +99,17 @@ services:
         - /opt/appdata/crafty/servers:/crafty/servers
         - /opt/appdata/crafty/config:/crafty/app/config
         - /opt/appdata/crafty/import:/crafty/import
+  duplicati:
+    container_name: duplicati
+    image: linuxserver/duplicati:2.0.7
+    restart: unless-stopped
+    environment:
+      <<: *env
+    ports:
+      - 8200:8200
+    volumes:
+      - /opt/appdata/duplicati:/config
+      - /opt/appdata:/source
   # --- Monitoring ---
   dockerproxy:
     container_name: dockerproxy
