@@ -93,6 +93,7 @@ services:
         - "2022:8123" # DYNMAP
         - "19132:19132/udp" # BEDROCK
         - "25500-25600:25500-25600" # MC SERV PORT RANGE
+        - "25049:25049" # Distant horizons
     volumes:
         - /opt/appdata/crafty/backups:/crafty/backups
         - /opt/appdata/crafty/logs:/crafty/logs
