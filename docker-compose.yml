@@ -111,6 +111,33 @@ services:
     volumes:
       - /opt/appdata/duplicati:/config
       - /opt/appdata:/source
+  hyperionng:
+    container_name: hyperionng
+    image: debian:bullseye
+    restart: unless-stopped
+    environment:
+      <<: *env
+    command: bash -c "groupadd -f hyperion || true &&
+                    adduser -q --uid ${UID:-1000} --gid ${GID:-1000} --disabled-password --no-create-home hyperion || true &&
+                    mkdir -p /config &&
+                    chown ${UID:-1000}:${GID:-1000} /config &&
+                    apt-get update &&
+                    apt-get install -y wget gpg sudo &&
+                    wget -qO /tmp/hyperion.pub.key https://apt.hyperion-project.org/hyperion.pub.key &&
+                    gpg --dearmor -o - /tmp/hyperion.pub.key > /usr/share/keyrings/hyperion.pub.gpg &&
+                    echo \"deb [signed-by=/usr/share/keyrings/hyperion.pub.gpg] https://apt.hyperion-project.org/ bullseye main\" > /etc/apt/sources.list.d/hyperion.list &&
+                    apt-get update &&
+                    apt-get install -y hyperion &&
+                    apt-get clean &&
+                    sudo -u hyperion /usr/bin/hyperiond -v --service -u /config"
+    ports:
+      - 19400:19400
+      - 19444:19444
+      - 19445:19445
+      - 8090:8090
+      - 8092:8092
+    volumes:
+      - /opt/appdata/hyperionng:/config
   # --- Monitoring ---
   dockerproxy:
     container_name: dockerproxy
