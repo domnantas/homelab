@@ -156,7 +156,7 @@ services:
     volumes:
       - /opt/appdata/hyperion:/root/.hyperion
     devices:
-      - /dev/video0:/dev/video0
+      # - /dev/video0:/dev/video0
   # --- Media ---
   jellyfin:
     container_name: jellyfin
