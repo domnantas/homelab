@@ -155,7 +155,7 @@ services:
       - 19445:19445
     volumes:
       - /opt/appdata/hyperion:/root/.hyperion
-    devices:
+    # devices:
       # - /dev/video0:/dev/video0
   # --- Media ---
   jellyfin:
