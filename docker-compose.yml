@@ -142,6 +142,21 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
+  hyperion:
+    container_name: hyperion
+    image: foorschtbar/hyperion:latest
+    restart: unless-stopped
+    environment:
+      <<: *env
+    ports:
+      - 8090:8090
+      - 8091:8091
+      - 19444:19444
+      - 19445:19445
+    volumes:
+      - /opt/appdata/hyperion:/root/.hyperion
+    devices:
+      - /dev/video0:/dev/video0
   # --- Media ---
   jellyfin:
     container_name: jellyfin
