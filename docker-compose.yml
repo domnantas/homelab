@@ -113,7 +113,7 @@ services:
       - /opt/appdata:/source
   hyperionng:
     container_name: hyperionng
-    image: debian:bullseye
+    image: debian:bookworm
     restart: unless-stopped
     environment:
       <<: *env
