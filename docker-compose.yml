@@ -75,7 +75,7 @@ services:
       - /opt/appdata/pihole/DNS:/etc/dnsmasq.d
   thelounge:
     container_name: thelounge
-    image: ghcr.io/thelounge/thelounge:4.4.1
+    image: ghcr.io/thelounge/thelounge:4.4.3
     ports:
       - "9000:9000"
     restart: unless-stopped
