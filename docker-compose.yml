@@ -37,7 +37,7 @@ services:
       - /opt/appdata/mealie:/app/data/
   homepage:
     container_name: homepage
-    image: ghcr.io/gethomepage/homepage:v0.8.10
+    image: ghcr.io/gethomepage/homepage:v0.9.1
     restart: unless-stopped
     environment:
       <<: *env
