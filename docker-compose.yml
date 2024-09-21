@@ -212,6 +212,14 @@ services:
     volumes:
       - /opt/appdata/bazarr:/config
       - /data:/data
+  recyclarr:
+    container_name: recyclarr
+    image: ghcr.io/recyclarr/recyclarr
+    restart: unless-stopped
+    environment:
+      <<: *env
+    volumes:
+      - /opt/appdata/recyclarr:/config
   sabnzbd:
     container_name: sabnzbd
     image: linuxserver/sabnzbd:4.3.2
