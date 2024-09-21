@@ -219,8 +219,8 @@ services:
     user: 1000:1000
     environment:
       <<: *env
-    volumes:
-      - /opt/appdata/recyclarr:/config
+    # volumes:
+    #   - /opt/appdata/recyclarr:/config
   sabnzbd:
     container_name: sabnzbd
     image: linuxserver/sabnzbd:4.3.2
