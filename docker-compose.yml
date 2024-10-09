@@ -83,7 +83,7 @@ services:
       - /opt/appdata/thelounge:/var/opt/thelounge
   crafty:
     container_name: crafty
-    image: arcadiatechnology/crafty-4:4.4.0
+    image: arcadiatechnology/crafty-4:4.4.4
     restart: unless-stopped
     environment:
       <<: *env
