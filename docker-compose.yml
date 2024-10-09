@@ -123,7 +123,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
   netdata:
     container_name: netdata
-    image: netdata/netdata:v1.45.6
+    image: netdata/netdata:v1.47.4
     restart: unless-stopped
     hostname: home
     environment:
