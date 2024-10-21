@@ -233,7 +233,7 @@ services:
       - /data/usenet:/data/usenet:rw
   qbittorrent:
     container_name: qbittorrent
-    image: ghcr.io/hotio/qbittorrent:5.0.0
+    image: ghcr.io/hotio/qbittorrent:release-5.0.0
     restart: unless-stopped
     environment:
       WEBUI_PORT: 8081
