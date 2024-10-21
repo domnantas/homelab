@@ -236,7 +236,7 @@ services:
     image: ghcr.io/hotio/qbittorrent:release-5.0.0
     restart: unless-stopped
     environment:
-      WEBUI_PORT: 8081
+      WEBUI_PORTS: "8081/tcp,8081/udp"
       <<: *env
     ports:
       - 8081:8081
