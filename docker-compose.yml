@@ -48,7 +48,7 @@ services:
       - /data:/data
   home-assistant:
     container_name: home-assistant
-    image: homeassistant/home-assistant:2024.10.1
+    image: homeassistant/home-assistant:2024.11.2
     restart: unless-stopped
     environment:
       <<: *env
