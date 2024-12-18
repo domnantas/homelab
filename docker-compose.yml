@@ -20,7 +20,7 @@ services:
       - /data:/srv/data
   mealie:
     container_name: mealie
-    image: ghcr.io/mealie-recipes/mealie:v2.2.0
+    image: ghcr.io/mealie-recipes/mealie:v2.4.1
     restart: unless-stopped
     environment:
       <<: *env
