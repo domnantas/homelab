@@ -203,7 +203,7 @@ services:
       - /opt/appdata/prowlarr:/config
   bazarr:
     container_name: bazarr
-    image: lscr.io/linuxserver/bazarr:1.4.5
+    image: lscr.io/linuxserver/bazarr:1.5.1
     restart: unless-stopped
     environment:
       <<: *env
