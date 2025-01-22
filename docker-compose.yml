@@ -123,8 +123,8 @@ services:
     container_name: ryot
     image: ignisda/ryot:v8.0.0
     restart: unless-stopped
-    volumes:
-      - /opt/appdata/ryot:/
+    # volumes:
+      # - /opt/appdata/ryot:/
     environment:
       <<: *env
       DATABASE_URL: "postgres://postgres:postgres@ryot-db:5432/postgres"
