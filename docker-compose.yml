@@ -111,28 +111,6 @@ services:
     volumes:
       - /opt/appdata/duplicati:/config
       - /opt/appdata:/source
-  ryot-db:
-    container_name: ryot-db
-    image: postgres:16-alpine
-    restart: unless-stopped
-    volumes:
-      - /opt/appdata/ryot-db:/var/lib/postgresql/data
-    environment:
-      <<: *env
-      POSTGRES_DB: "postgres"
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-  ryot:
-    container_name: ryot
-    image: ignisda/ryot:v8.0.0
-    restart: unless-stopped
-    # volumes:
-      # - /opt/appdata/ryot:/
-    environment:
-      <<: *env
-      DATABASE_URL: "postgres://postgres:postgres@ryot-db:5432/postgres"
-    ports:
-      - 8001:8000
   # --- Monitoring ---
   dockerproxy:
     container_name: dockerproxy
