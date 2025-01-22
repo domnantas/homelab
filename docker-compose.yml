@@ -129,7 +129,7 @@ services:
       <<: *env
       DATABASE_URL: "postgres://postgres:postgres@ryot-db:5432/postgres"
     ports:
-      - 8000:8000
+      - 8001:8000
   # --- Monitoring ---
   dockerproxy:
     container_name: dockerproxy
