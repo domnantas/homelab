@@ -77,7 +77,7 @@ services:
     container_name: thelounge
     image: ghcr.io/thelounge/thelounge:4.4.3
     ports:
-      - "9000:9000"
+      - 9000:9000
     restart: unless-stopped
     volumes:
       - /opt/appdata/thelounge:/var/opt/thelounge
@@ -111,6 +111,25 @@ services:
     volumes:
       - /opt/appdata/duplicati:/config
       - /opt/appdata:/source
+  ryot-db:
+    container_name: ryot-db
+    image: postgres:16-alpine
+    restart: unless-stopped
+    volumes:
+      - /opt/appdata/ryot-db:/var/lib/postgresql/data
+    environment:
+      <<: *env
+  ryot:
+    container_name: ryot
+    image: ignisda/ryot:v8.0.0
+    restart: unless-stopped
+    volumes:
+      - /opt/appdata/ryot:/
+    environment:
+      <<: *env
+      DATABASE_URL: "postgres://postgres:postgres@ryot-db:5432/postgres"
+    ports:
+      - 8000:8000
   # --- Monitoring ---
   dockerproxy:
     container_name: dockerproxy
