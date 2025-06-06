@@ -161,7 +161,7 @@ services:
       - /dev/dri/card0:/dev/dri/card0
   jellyseerr:
     container_name: jellyseerr
-    image: fallenbagel/jellyseerr:2.1.0
+    image: fallenbagel/jellyseerr:2.5.2
     restart: unless-stopped
     environment:
       <<: *env
