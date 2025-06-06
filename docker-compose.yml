@@ -7,7 +7,7 @@ x-environment-vars: &env
 services:
   filebrowser:
     container_name: filebrowser
-    image: filebrowser/filebrowser:v2.31.2
+    image: filebrowser/filebrowser:v2.32.0
     restart: unless-stopped
     environment:
       <<: *env
