@@ -222,7 +222,7 @@ services:
       - /opt/appdata/recyclarr:/config
   sabnzbd:
     container_name: sabnzbd
-    image: linuxserver/sabnzbd:4.3.3
+    image: linuxserver/sabnzbd:4.5.3
     restart: unless-stopped
     environment:
       <<: *env
