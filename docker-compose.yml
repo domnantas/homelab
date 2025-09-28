@@ -81,6 +81,8 @@ services:
     volumes:
       - /opt/appdata/zigbee2mqtt:/app/data
       - /run/udev:/run/udev:ro
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
     ports:
       - 8083:8080
   pihole:
