@@ -63,7 +63,7 @@ services:
     image: eclipse-mosquitto:2.0.22
     container_name: mosquitto
     volumes:
-      - /opt/appdata/mosquitto:/mosquitto/config
+      - /opt/appdata/mosquitto/config:/mosquitto/config
       - /opt/appdata/mosquitto/data:/mosquitto/data
       - /opt/appdata/mosquitto/log:/mosquitto/log
     ports:
