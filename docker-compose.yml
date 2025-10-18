@@ -197,7 +197,7 @@ services:
       - /opt/appdata/jellyseer:/app/config
   radarr:
     container_name: radarr
-    image: linuxserver/radarr:5.14.0
+    image: linuxserver/radarr:5.28.0
     restart: unless-stopped
     environment:
       <<: *env
